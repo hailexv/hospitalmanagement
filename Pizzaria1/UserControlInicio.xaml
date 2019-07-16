@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Pizzaria1.UserControlInicio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pizzaria1"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="auto" Width="auto">
+    
+    
+    
+    <Grid Height="435">
+        <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
+        <Image Source="Assets/welcome.jpeg" Margin="310,0,0,0" Stretch="UniformToFill"/>
+        <StackPanel Margin="310,10,0,0">
+
+
+            <Label Content="Registration ID" FontFamily="Segoe UI Black" FontSize="24" Margin="0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070"><Run Text="Registration ID for the patient "/></TextBlock>
+               
+            </StackPanel>
+            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070"><Run Text=""/></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="FormatListNumbers" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="ID number" Name="idnum" Width="200" Margin="5"/>
+                <Button FontSize="10" Width="50" Content="GO"  Background="#FF307CD6" BorderBrush="#FF307CD6" />
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Foreground="#707070"/>
+                
+                <DatePicker Name="dpicker"
+                Width="250" Margin="5"
+                materialDesign:HintAssist.Hint="Pick Date"
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            </StackPanel>
+            
+
+
+            
+
+
+
+        </StackPanel>
+        <StackPanel Margin="20,10,290,10">
+            <Label Content="Patient Info" FontFamily="Segoe UI Black" FontSize="24" Margin="0,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070"><Run Text="Basic patient information "/></TextBlock>
+               
+            </StackPanel>
+            <TextBlock Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Foreground="#707070"><Run Text="can be entered on the fields below"/></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox  materialDesign:HintAssist.Hint="First Name" Name="fname" Width="250" Margin="5"/>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="Last Name" Name="lname" Width="250" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Phone" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="Phone Number" Name="pnumber" Width="250" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="AccountLocation" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox materialDesign:HintAssist.Hint="Address" Name="addr" Width="250" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="AccountCircle" VerticalAlignment="Center" Foreground="#707070"/>
+                <TextBox  IsEnabled="False" materialDesign:HintAssist.Hint="Picture" Name="path" Width="170" Margin="5"/>
+                <Button Name="browse" Click="Browse_Click" Content="Browse" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Margin="10" Orientation="Vertical">
+                
+                <Button  Name="capture" Click="Capture_Click" Content="Capture Photo" />
+                <Ellipse Height="100" Width="100" Stroke="White" StrokeThickness="3">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="patientPic" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </StackPanel>
+
+
+
+
+        </StackPanel>
+
+        <Button Name="submit" Click="Submit_Click" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Content="SUBMIT" FontFamily="Impact" FontSize="18" Width="100" Background="#FF307CD6" BorderBrush="#FF307CD6"/>
+
+    </Grid>
+</UserControl>

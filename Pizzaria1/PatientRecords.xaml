@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="Pizzaria1.PatientRecords"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            
+             xmlns:local="clr-namespace:Pizzaria1"
+             mc:Ignorable="d" 
+             
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="auto" Width="auto">
+
+    <UserControl.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConv" />
+    </UserControl.Resources>
+    
+        <Grid Height="515">
+
+            <Image Source="Assets/welcome.jpeg" Margin="310,0,0,0" Stretch="UniformToFill"/>
+        <ScrollViewer>
+            <StackPanel Margin="50,10,50,0">
+
+
+                <TextBox Name="searchBox" Background="White"
+    Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+    VerticalAlignment="Top"
+    AcceptsReturn="True"
+    TextWrapping="Wrap"
+    Width="200"
+    materialDesign:HintAssist.Hint="Search patient"
+    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" TextChanged="SearchBox_TextChanged" />
+
+
+
+
+                <DockPanel>
+
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth5" Padding="12" Margin="0 50">
+                    <DataGrid    x:Name="myDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" IsReadOnly="True" >
+
+                        
+                         
+                        
+                        
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                            <DataGridTextColumn Header="Fname" Binding="{Binding fname}" />
+                            <DataGridTextColumn Header="Lname" Binding="{Binding lname}" />
+                            <DataGridTextColumn Header="Pnumber" Binding="{Binding pnumber}" />
+                            <DataGridTextColumn Header="Address" Binding="{Binding address}" />
+                            <DataGridTextColumn Header="Regdate" Binding="{Binding regdate}" />
+                            <DataGridTemplateColumn Header="Image">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+
+                                        <Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Stroke="Black">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding image  , Converter={StaticResource ByteArrayToImageConv}}" Stretch="UniformToFill"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Action" />
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.HeaderTemplate>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
+
+
+                                            <Button x:Name="addBtn" Content="Add " Click="AddBtn_Click"  Margin="5"/>
+                                            <Button x:Name="viewBtn" Content="View" Click="ViewBtn_Click" Margin="5"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            
+                            
+                            
+                            
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    </materialDesign:Card>
+
+                </DockPanel>
+
+
+
+            </StackPanel>
+
+            </ScrollViewer>
+
+
+    </Grid>
+    
+</UserControl>

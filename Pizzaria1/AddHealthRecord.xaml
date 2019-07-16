@@ -1,0 +1,138 @@
+﻿<Window x:Class="Pizzaria1.AddHealthRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pizzaria1"
+        mc:Ignorable="d"
+        xmlns:smtx="clr-namespace:ShowMeTheXAML;assembly=ShowMeTheXAML"
+        
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="HealthRecord" Height="550" Width="500">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            
+            
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Height="465" HorizontalAlignment="Center">
+
+        <materialDesign:DialogHost  Name="PopupAddCustom" CloseOnClickAway="True">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid>
+                    
+                    <StackPanel Margin="16">
+                        
+                        <TextBlock>Patient record has 
+                            </TextBlock>
+                        <TextBlock Margin="0 8 0 0"> been added successfully </TextBlock>
+                        <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">CLOSE</Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+
+
+        </materialDesign:DialogHost>
+
+
+        <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
+        <Image Source="Assets/welcome.jpeg" Margin="310,0,0,0" Stretch="UniformToFill"/>
+        <StackPanel Margin="50,10,50,0">
+            <Ellipse Height="100" Width="100" Stroke="White" StrokeThickness="3">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="Assets/Doctor.png" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+
+            <Label Content="Add a new record" FontFamily="Segoe UI Black" FontSize="24" Margin="70,10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+            <StackPanel Orientation="Vertical">
+
+                <StackPanel Margin="32,0,0,0"  Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="10" Kind="Timer" VerticalAlignment="Center" Foreground="#707070"/>
+
+                    <DatePicker Name="dpicker"
+                Width="250" Margin="5"
+                materialDesign:HintAssist.Hint="Pick Date"
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                </StackPanel>
+
+                <StackPanel Margin="32,0,0,0"  Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="10" Kind="Category" VerticalAlignment="Center" Foreground="#707070"/>
+
+                    <ComboBox Name="labType" Margin="5" Width="250"
+    materialDesign:ComboBoxAssist.ClassicMode="{Binding ElementName=ClassicModeCheckBox, Path=IsChecked}"
+    
+    HorizontalAlignment="Left">
+                        <ComboBoxItem
+      IsSelected="True">
+                            CBC
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            BMP
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            ANA
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            ESR
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Margin="32,0,0,0"   Orientation="Horizontal">
+
+                    <materialDesign:PackIcon Margin="10" Kind="Tick" VerticalAlignment="Center" Foreground="#707070"/>
+                    <RadioButton Name="positiveBtn" GroupName="labresult" Margin="5" Width="120"
+    Style="{StaticResource MaterialDesignRadioButton}">POSITIVE</RadioButton>
+
+                    <RadioButton GroupName="labresult" Name="negativeBtn" Margin="5"
+    Style="{StaticResource MaterialDesignRadioButton}">NEGATIVE</RadioButton>
+                </StackPanel>
+
+
+                <StackPanel Margin="32,0,0,0"  Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="10" Kind="Favorite" VerticalAlignment="Center" Foreground="#707070"/>
+                    <TextBox Name="disease" Width="280"
+    Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+    
+    VerticalAlignment="Top"
+    Height="100"
+    AcceptsReturn="True"
+    TextWrapping="Wrap"
+    VerticalScrollBarVisibility="Auto"
+    materialDesign:HintAssist.Hint="Name of the disease"
+    IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox}" />
+                </StackPanel>
+                <Button
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    CommandTarget="{Binding ElementName=PopupAddCustom}"
+                    Name="Add" Click="Add_Click" Margin="20"
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    Width="100"
+    ToolTip="add a new health record">
+                    Add
+                </Button>
+            </StackPanel>
+
+        </StackPanel>
+
+
+        
+
+    </Grid>
+</Window>
